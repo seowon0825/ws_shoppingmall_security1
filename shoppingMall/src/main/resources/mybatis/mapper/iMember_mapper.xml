@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.shoppingMall.dao.IMemberDao">
+	<insert id="signUp">
+		INSERT INTO member (username, password, mem_name, mem_tel, mem_addr, role)
+		VALUES (#{username}, #{password}, #{mem_name}, #{mem_tel}, #{mem_addr}, #{role})
+	</insert>
+	<!-- 
+	<select id="loginCheck">
+		SELECT COUNT(*) FROM member WHERE username = #{username} AND password = #{password}
+	</select>
+	 -->
+	<select id="userInfo">
+		SELECT * FROM member WHERE username = #{username}
+	</select>
+	<select id="getSaleProductList">
+		select * from product where product_soldout = 1;
+	</select>
+	<select id="getOrderList">
+		SELECT o.ono, o.order_no, o.product_no, o.mem_no, o.order_addr, o.product_order_date, o.product_order_quantity, p.product_name, p.product_price
+		FROM orders o
+		JOIN product p
+		ON o.product_no = p.product_no
+		WHERE mem_no = #{mem_no}
+	</select>
+	<select id="getUsername">
+		SELECT * FROM member WHERE username = #{username}
+	</select>
+</mapper>
