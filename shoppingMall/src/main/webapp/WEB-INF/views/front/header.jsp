@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +16,18 @@
         <div class="container">
             <button class="menu-btn" onclick="toggleSidebar(event)">☰</button>
             <a href="/" class="logo">LOGO</a>
-            <!-- 
+            
+<!-- 
+            <sec:authorize access="hasRole('ROLE_ADMIN')">
+                <a href="/admin/dashboard" class="btn btn-light">관리자 모드</a>
+            </sec:authorize>
+            <sec:authorize access="isAuthenticated()">
+                <sec:authentication property="principal.username" var="username"/>
+                <c:if test="${not hasRole('ROLE_ADMIN')}">
+                    <a href="/basket/basketList">${username }님의 장바구니</a>
+                </c:if>
+            </sec:authorize>
+            
             <c:if test="${sessionScope.loginMember.role eq 'ROLE_ADMIN'}">
             	<a href="/admin/dashboard" class="btn btn-light">관리자 모드</a>
             </c:if>

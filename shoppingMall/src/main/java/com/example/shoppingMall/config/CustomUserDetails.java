@@ -24,7 +24,7 @@ public class CustomUserDetails implements UserDetails {
 			
 			@Override
 			public String getAuthority() {
-				return member.getRole();
+				return "ROLE_" + member.getRole();
 			}
 		});
 		
@@ -41,9 +41,24 @@ public class CustomUserDetails implements UserDetails {
 		return member.getUsername();
 	}
 	
-	
 	public String getRole() {
 		return member.getRole();
+	}
+	
+	public int getMem_no() {
+		return member.getMem_no();
+	}
+	
+	public String getMem_name() {
+		return member.getMem_name();
+	}
+	
+	public String getMem_tel() {
+		return member.getMem_tel();
+	}
+	
+	public String getMem_addr() {
+		return member.getMem_addr();
 	}
 	
 	@Override
